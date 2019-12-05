@@ -3,7 +3,7 @@ package com.example.cs213_android;
 import java.io.Serializable;
 
 public class Tag implements Serializable{
-    private static final long serialVersionUID = 167475560174313510L;
+    private static final long serialVersionUID = 4;
     private String type, value;
 
     public Tag(String type, String value) {
