@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     android:orientation="vertical"
-    tools:context=".PhotoAlbumActivity">
-    <!--tools:showIn="@layout/albums_display"> -->
+    tools:context=".PhotoAlbumActivity"
+    tools:showIn="@layout/albums_display">
 
     <ListView
         android:id="@+id/albums_list"

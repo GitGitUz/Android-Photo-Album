@@ -10,6 +10,7 @@ public class AlbumsList implements Serializable {
     private static final long serialVersionUID = 1L;
     public static ArrayList<Album> albums;
     public static final String dataFile = "albums.dat";
+
     public AlbumsList() {
         albums = new ArrayList<Album>();
     }
@@ -18,9 +19,23 @@ public class AlbumsList implements Serializable {
         return albums;
     }
 
-    public void addNewAlbum(String aName) {
+    public void addAlbum(String aName) {
         albums.add(new Album(aName));
     }
+
+    public void removeAlbum(int index){
+        albums.remove(index);
+    }
+
+    public boolean duplicateAlbumName(String aName){
+        for(Album a: albums){
+            if(a.getName().equalsIgnoreCase(aName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static ArrayList<Album> readData(Context context){
         ArrayList<Album> albms = new ArrayList<Album>();
@@ -62,8 +77,5 @@ public class AlbumsList implements Serializable {
         }catch(IOException e){
             e.printStackTrace();
         }
-    }
-
-    public void initializeFromData(){
     }
 }

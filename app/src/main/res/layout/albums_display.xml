@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PhotoAlbumActivity">
-<!--
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,13 +15,89 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#673AB7"
+            android:background="#9C27B0"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:id="@+id/toolbar_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/your_albums"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="normal" />
 
         </androidx.appcompat.widget.Toolbar>
 
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/albums_list" /> -->
+    <include
+        android:id="@+id/include"
+        layout="@layout/albums_list" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addAlbum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:tint="#000000"
+        app:backgroundTint="#4CAF50"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/renameAlbum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:tint="#FFFFFF"
+        android:visibility="invisible"
+        app:backgroundTint="#FF9800"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteAlbum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:tint="#FFFFFF"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchPhotos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:tint="#FFFFFF"
+        app:backgroundTint="#3B5998"
+        app:srcCompat="@android:drawable/ic_search_category_default" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="15dp"
+        android:clickable="true"
+        android:tint="#000000"
+        android:visibility="invisible"
+        app:backgroundTint="#BB0606"
+        app:fabCustomSize="30dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
