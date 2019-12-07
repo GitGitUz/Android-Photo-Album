@@ -7,27 +7,28 @@ import java.util.ArrayList;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 
 public class Photo implements Serializable {
 
     private static final long serialVersionUID = 3;
-    transient Bitmap image;
+    transient Drawable image;
     private String caption;
     private Album album;
     private ArrayList<Tag> tags;
 
-    public Photo(Bitmap image, Album album, String caption) {
+    public Photo(Drawable image, Album album, String caption) {
         tags = new ArrayList<Tag>();
         this.image = image;
         this.caption = caption;
         this.album = album;
     }
 
-    public void setImage(Bitmap image){
+    public void setImage(Drawable image){
         this.image = image;
     }
 
-    public Bitmap getImage(){
+    public Drawable getImage(){
         return image;
     }
 

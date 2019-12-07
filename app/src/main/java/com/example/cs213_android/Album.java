@@ -25,8 +25,16 @@ public class Album implements Serializable{
         return ""+photos.size();
     }
 
-    public ArrayList<Photo> getAlbumPhotos(){
+    public ArrayList<Photo> getPhotos(){
         return photos;
+    }
+
+    public ArrayList<String> getCaptions(){
+        ArrayList<String> captions = new ArrayList<String>();
+        for(Photo p : photos){
+            captions.add(p.getCaption());
+        }
+        return captions;
     }
 
     public void addPhoto(Photo p) {

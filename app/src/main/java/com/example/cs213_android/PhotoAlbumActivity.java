@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 //import android.content.Intent;
 //import android.content.DialogInterface;
 
+import android.content.Intent;
 import android.text.InputType;
 
 import android.util.Log;
@@ -35,8 +36,6 @@ public class PhotoAlbumActivity extends AppCompatActivity {
 
     private ListView albumsLV;
     public static AlbumsList aList;
-    //public static final String ALBUM_NAME = "album_name";
-    //public static final String ALBUM_INFO = "album_info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -263,19 +262,14 @@ public class PhotoAlbumActivity extends AppCompatActivity {
             return true;
         });
 
-//        albumsLV.setOnItemClickListener(
-//                (AdapterView<?> av, View view, int pos, long id) -> openAlbum(pos)
-//        );
+        albumsLV.setOnItemClickListener((AdapterView<?> av, View view, int pos, long id) -> {
+                    Intent intent = new Intent(PhotoAlbumActivity.this, AlbumInfoActivity.class);
+                    intent.putExtra("index",pos);
+                    startActivity(intent);
+        });
 
     }
 }
 
-//    private void openAlbum(int pos){
-//        Bundle bundle = new Bundle();
-//        bundle.putString(ALBUM_NAME, usr.albums.get(pos).getName());
-//        Intent intent = new Intent(this, AlbumInfoActivity.class);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
-//    }
 
 

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".PhotoAlbumActivity">
+    tools:context=".AlbumInfoActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -13,18 +12,18 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar2"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#9C27B0"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:background="#6A1B9A"
+            android:theme="@style/AppTheme.PopupOverlay">
 
             <TextView
                 android:id="@+id/toolbar_Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/app_albums"
+                android:text="@string/app_photos"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="normal" />
@@ -33,12 +32,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/albums_list" />
+    <include android:id="@+id/include" layout="@layout/photo_grid" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addAlbum"
+        android:id="@+id/addPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -50,7 +47,7 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/renameAlbum"
+        android:id="@+id/movePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|end"
@@ -59,11 +56,11 @@
         android:clickable="true"
         android:tint="#FFFFFF"
         android:visibility="invisible"
-        app:backgroundTint="#FF9800"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:backgroundTint="#0277BD"
+        app:srcCompat="?attr/actionModeCopyDrawable" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/deleteAlbum"
+        android:id="@+id/deletePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|end"
@@ -73,18 +70,6 @@
         android:tint="#FFFFFF"
         android:visibility="invisible"
         app:srcCompat="@android:drawable/ic_menu_delete" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/searchPhotos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:tint="#FFFFFF"
-        app:backgroundTint="#3B5998"
-        app:srcCompat="@android:drawable/ic_search_category_default" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/cancel"
