@@ -2,19 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/caption"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:drawableTop="@android:drawable/sym_def_app_icon"
+        android:background="#E1BEE7"
+        android:drawablePadding="5sp"
         android:gravity="center"
         android:maxLines="1"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
         android:textSize="12sp" />
 
 </LinearLayout>

@@ -93,7 +93,7 @@ public class PhotoAlbumActivity extends AppCompatActivity {
         FloatingActionButton search = findViewById(R.id.searchPhotos);
         FloatingActionButton rename = findViewById(R.id.renameAlbum);
         FloatingActionButton delete = findViewById(R.id.deleteAlbum);
-        FloatingActionButton cancel = findViewById(R.id.cancel);
+        FloatingActionButton cancel = findViewById(R.id.cancelA);
 
         add.setOnClickListener((View v)->{
             AlertDialog.Builder ab = new AlertDialog.Builder(mainContext);

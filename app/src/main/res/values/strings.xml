@@ -3,4 +3,5 @@
     <string name="app_albums">All Albums</string>
     <string name="app_photos">Photos</string>
     <string name="app_search">Search for Photos</string>
+    <string name="app_tags">Tags List</string>
 </resources>

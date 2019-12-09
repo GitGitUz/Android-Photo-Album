@@ -19,11 +19,10 @@
             android:theme="@style/AppTheme.PopupOverlay">
 
             <TextView
-                android:id="@+id/toolbar_Title"
+                android:id="@+id/toolbar2_Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/app_photos"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="normal" />
@@ -72,7 +71,7 @@
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/cancel"
+        android:id="@+id/cancelP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"

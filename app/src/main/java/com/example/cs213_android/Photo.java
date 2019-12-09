@@ -12,23 +12,23 @@ import android.graphics.drawable.Drawable;
 public class Photo implements Serializable {
 
     private static final long serialVersionUID = 3;
-    transient Drawable image;
+    transient Bitmap image;
     private String caption;
     private Album album;
     private ArrayList<Tag> tags;
 
-    public Photo(Drawable image, Album album, String caption) {
+    public Photo(Bitmap image, Album album, String caption) {
         tags = new ArrayList<Tag>();
         this.image = image;
         this.caption = caption;
         this.album = album;
     }
 
-    public void setImage(Drawable image){
+    public void setImage(Bitmap image){
         this.image = image;
     }
 
-    public Drawable getImage(){
+    public Bitmap getImage(){
         return image;
     }
 
@@ -86,4 +86,28 @@ public class Photo implements Serializable {
         }
         return false;
     }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
+        ois.defaultReadObject();
+        int bite;
+        ByteArrayOutputStream  baos = new ByteArrayOutputStream();
+        while((bite = ois.read()) != -1){
+            baos.write(bite);
+        }
+
+        byte picBMBytes[] = baos.toByteArray();
+        image = BitmapFactory.decodeByteArray(picBMBytes, 0, picBMBytes.length);
+    }
+
+    private void writeObject(ObjectOutputStream oos) throws Exception{
+        oos.defaultWriteObject();
+        if(image != null){
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.PNG, 0, baos);
+            byte picBMBytes[] = baos.toByteArray();
+            oos.write(picBMBytes, 0, picBMBytes.length);
+        }
+    }
+
+
 }
