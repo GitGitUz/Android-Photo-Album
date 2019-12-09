@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class AlbumInfoActivity extends AppCompatActivity {
+
     final Context albumContext = this;
     private GridView photosGV;
     private Album album;
@@ -146,6 +147,10 @@ public class AlbumInfoActivity extends AppCompatActivity {
 
 
         photosGV.setOnItemClickListener((AdapterView<?> av, View view, int pos, long id) -> {
+            Intent intent = new Intent(AlbumInfoActivity.this, PhotoDisplayActivity.class);
+            intent.putExtra("album_index", albumIndex);
+            intent.putExtra("photo_index", pos);
+            startActivity(intent);
 
         });
 

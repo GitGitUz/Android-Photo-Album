@@ -64,4 +64,62 @@
         app:fabSize="mini"
         app:srcCompat="@drawable/next" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/editTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="90dp"
+        android:clickable="true"
+        android:tint="#FFFFFF"
+        android:visibility="invisible"
+        app:backgroundTint="#FF9800"
+        app:fabCustomSize="30dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:tint="#FFFFFF"
+        android:visibility="invisible"
+        app:fabCustomSize="30dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:tint="#000000"
+        android:visibility="visible"
+        app:backgroundTint="#4CAF50"
+        app:fabCustomSize="30dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cancelT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="15dp"
+        android:clickable="true"
+        android:tint="#000000"
+        android:visibility="invisible"
+        app:backgroundTint="#BB0606"
+        app:fabCustomSize="30dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

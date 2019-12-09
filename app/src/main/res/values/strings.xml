@@ -4,4 +4,8 @@
     <string name="app_photos">Photos</string>
     <string name="app_search">Search for Photos</string>
     <string name="app_tags">Tags List</string>
+    <string-array name="tag_types">
+        <item>location</item>
+        <item>person</item>
+    </string-array>
 </resources>

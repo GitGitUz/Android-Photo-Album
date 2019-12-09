@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 
 public class Photo implements Serializable {
 
@@ -24,33 +23,33 @@ public class Photo implements Serializable {
         this.album = album;
     }
 
-    public void setImage(Bitmap image){
-        this.image = image;
-    }
+//    public void setImage(Bitmap image){
+//        this.image = image;
+//    }
 
     public Bitmap getImage(){
         return image;
     }
 
-    public void setCaption(String caption) {
-        this.caption = caption;
-    }
+//    public void setCaption(String caption) {
+//        this.caption = caption;
+//    }
 
     public String getCaption() {
         return caption;
     }
 
-    public void setAlbum(Album album) {
-        this.album = album;
-    }
+//    public void setAlbum(Album album) {
+//        this.album = album;
+//    }
 
-    public Album getAlbum() {
-        return album;
-    }
+//    public Album getAlbum() {
+//        return album;
+//    }
 
-    public String getAlbumName() {
-        return album.getName();
-    }
+//    public String getAlbumName() {
+//        return album.getName();
+//    }
 
     public Tag getTag(int tagIndex) {
         return tags.get(tagIndex);
@@ -58,6 +57,10 @@ public class Photo implements Serializable {
 
     public void addTag(String t, String v) {
         tags.add(new Tag(t, v));
+    }
+
+    public void addTag(Tag t){
+        tags.add(t);
     }
 
     public void editTag(int tagIndex, String t, String v) {
@@ -75,6 +78,14 @@ public class Photo implements Serializable {
 
     public ArrayList<Tag> getTags(){
         return tags;
+    }
+
+    public ArrayList<String> getTagsAsStrings(){
+        ArrayList<String> tagStrings = new ArrayList<String>();
+        for(Tag t : tags){
+            tagStrings.add(t.toString());
+        }
+        return tagStrings;
     }
 
     public boolean duplicateTag(Tag toCheck) {
