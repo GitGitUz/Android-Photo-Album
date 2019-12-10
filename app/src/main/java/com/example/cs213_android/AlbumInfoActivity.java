@@ -46,9 +46,9 @@ public class AlbumInfoActivity extends AppCompatActivity {
         Log.i("I:Album Photo Count(Startup)", album.getNumPhotos());
         final int albumIndex = index;
 
-        Toolbar toolbar = findViewById(R.id.toolbar2);
-        TextView textView = toolbar.findViewById(R.id.toolbar2_Title);
-        textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") " + "photos");
+        Toolbar toolbar = findViewById(R.id.toolbar_ai);
+        TextView textView = toolbar.findViewById(R.id.toolbar_aiTitle);
+        textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") photos");
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,7 +81,7 @@ public class AlbumInfoActivity extends AppCompatActivity {
                 ab.setPositiveButton("Yes", ((DialogInterface dialog, int which) -> {
                     album.getPhotos().remove(pos2);
                     AlbumsList.writeData(albumContext, PhotoAlbumActivity.aList.getAlbumList());
-                    textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") " + "photos");
+                    textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") photos");
                     photosGV.setAdapter(adapter);
                     delete.hide();
                     move.hide();
@@ -114,7 +114,7 @@ public class AlbumInfoActivity extends AppCompatActivity {
                     PhotoAlbumActivity.aList.getAlbumList().get(destAlbum).addPhoto(photoToMove);
                     album.getPhotos().remove(pos2);
                     AlbumsList.writeData(albumContext, PhotoAlbumActivity.aList.getAlbumList());
-                    textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") " + "photos");
+                    textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") photos");
                     adapter = new PhotoAdapter(albumContext,album.getCaptions(), album.getPhotos());
                     photosGV.setAdapter(adapter);
                     delete.hide();
@@ -218,8 +218,8 @@ public class AlbumInfoActivity extends AppCompatActivity {
                 adapter = new PhotoAdapter(this, album.getCaptions(), album.getPhotos());
                 photosGV.setAdapter(adapter);
 
-                TextView textView = findViewById(R.id.toolbar2_Title);
-                textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") " + "photos");
+                TextView textView = findViewById(R.id.toolbar_aiTitle);
+                textView.setText(album.getName() + ": (" + album.getNumPhotos() + ") photos");
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

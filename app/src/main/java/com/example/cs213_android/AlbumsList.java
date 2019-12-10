@@ -9,10 +9,12 @@ public class AlbumsList implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public static ArrayList<Album> albums;
+    public static Album searchResults;
     public static final String dataFile = "albums.dat";
 
     public AlbumsList() {
         albums = new ArrayList<Album>();
+        searchResults = new Album("Search Results");
     }
 
     public ArrayList<Album> getAlbumList(){
@@ -36,14 +38,14 @@ public class AlbumsList implements Serializable {
         return false;
     }
 
-    public Album getAlbumByName(String name){
-        for(Album a : albums){
-            if(a.getName().equalsIgnoreCase(name)){
-                return a;
-            }
-        }
-        return null;
-    }
+//    public Album getAlbumByName(String name){
+//        for(Album a : albums){
+//            if(a.getName().equalsIgnoreCase(name)){
+//                return a;
+//            }
+//        }
+//        return null;
+//    }
 
     public static ArrayList<Album> readData(Context context){
         ArrayList<Album> albms = new ArrayList<Album>();

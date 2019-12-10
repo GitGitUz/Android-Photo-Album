@@ -12,14 +12,14 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbar_ai"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#6A1B9A"
             android:theme="@style/AppTheme.PopupOverlay">
 
             <TextView
-                android:id="@+id/toolbar2_Title"
+                android:id="@+id/toolbar_aiTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"

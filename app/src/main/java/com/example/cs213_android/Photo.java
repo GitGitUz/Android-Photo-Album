@@ -10,7 +10,7 @@ import android.graphics.BitmapFactory;
 
 public class Photo implements Serializable {
 
-    private static final long serialVersionUID = 3;
+    private static final long serialVersionUID = 3L;
     transient Bitmap image;
     private String caption;
     private Album album;
@@ -96,6 +96,26 @@ public class Photo implements Serializable {
             }
         }
         return false;
+    }
+
+    public ArrayList<String> getLocationTags(){
+        ArrayList<String> locTags = new ArrayList<String>();
+        for(Tag t : tags){
+            if(t.getType().equalsIgnoreCase("location")){
+                locTags.add(t.getValue());
+            }
+        }
+        return locTags;
+    }
+
+    public ArrayList<String> getPersonTags(){
+        ArrayList<String> personTags = new ArrayList<String>();
+        for(Tag t : tags){
+            if(t.getType().equalsIgnoreCase("person")){
+                personTags.add(t.getValue());
+            }
+        }
+        return personTags;
     }
 
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{

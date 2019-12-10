@@ -3,10 +3,15 @@ package com.example.cs213_android;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+
 import android.os.Bundle;
+
 import android.text.InputType;
+
 import android.util.Log;
+
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -63,8 +68,8 @@ public class PhotoDisplayActivity extends AppCompatActivity {
             next.show();
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar3);
-        TextView textView = toolbar.findViewById(R.id.toolbar3_Title);
+        Toolbar toolbar = findViewById(R.id.toolbar_pd);
+        TextView textView = toolbar.findViewById(R.id.toolbar_pdTitle);
         textView.setText(currPhoto.getCaption());
 
         setSupportActionBar(toolbar);

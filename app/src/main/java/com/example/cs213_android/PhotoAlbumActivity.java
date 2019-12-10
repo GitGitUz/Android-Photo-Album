@@ -2,15 +2,15 @@ package com.example.cs213_android;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-//import androidx.appcompat.widget.Toolbar;
 
+import android.os.Bundle;
+
+import android.app.Dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-//import android.content.Intent;
-//import android.content.DialogInterface;
-
 import android.content.Intent;
+
 import android.text.InputType;
 
 import android.util.Log;
@@ -19,12 +19,12 @@ import android.view.View;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
-//import android.widget.TextView;
-
-import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -149,6 +149,140 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                 dialog.cancel();
             }));
             ab.show();
+        });
+
+        search.setOnClickListener((View v)->{
+            final Dialog dialog = new Dialog(mainContext);
+            dialog.setContentView(R.layout.search_dialog);
+            dialog.setTitle("Provide tag-value pair");
+
+            Button searchBtn = dialog.findViewById(R.id.searchBtn);
+            Button cancelBtn = dialog.findViewById(R.id.cancelBtn);
+            Spinner searchSpinner = dialog.findViewById(R.id.spinner_search);
+            AutoCompleteTextView autoText = dialog.findViewById(R.id.acTV);
+            final ArrayList<String> lTags = new ArrayList<String>();
+            final ArrayList<String> pTags = new ArrayList<String>();
+
+            for(int i = 0; i < PhotoAlbumActivity.aList.getAlbumList().size(); i++){
+                for(int j = 0; j < PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().size(); j++){
+                    if(PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().get(j).getLocationTags() == null){
+                        continue;
+                    }
+                    lTags.addAll(PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().get(j).getLocationTags());
+                }
+            }
+
+            for(int i = 0; i < PhotoAlbumActivity.aList.getAlbumList().size(); i++){
+                for(int j = 0; j < PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().size(); j++){
+                    if(PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().get(j).getPersonTags() == null){
+                        continue;
+                    }
+                    pTags.addAll(PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().get(j).getPersonTags());
+                }
+            }
+
+            searchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(searchSpinner.getSelectedItem().toString().trim().equals("location")){
+                        ArrayAdapter<String> autoAdapter = new ArrayAdapter<String>(mainContext, android.R.layout.simple_dropdown_item_1line, lTags);
+                        autoText.setAdapter(autoAdapter);
+                    }else{
+                        ArrayAdapter<String> autoAdapter = new ArrayAdapter<String>(mainContext, android.R.layout.simple_dropdown_item_1line, pTags);
+                        autoText.setAdapter(autoAdapter);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+            searchBtn.setOnClickListener((View view)->{
+                aList.searchResults.clearSearchResults();
+                String tagType = searchSpinner.getSelectedItem().toString().trim();
+                String tagValue = autoText.getText().toString().trim();
+
+                if(tagValue.isEmpty()){
+                    AlertDialog.Builder ab = new AlertDialog.Builder(mainContext);
+                    ab.setTitle("Input error");
+                    ab.setMessage("Please enter a tag value");
+                    ab.setPositiveButton("OK", ((DialogInterface d, int which)->{
+                        dialog.dismiss();
+                    }));
+                    ab.show();
+                }else{
+                    if(tagType.equals("location")){
+                        for(int i = 0; i < PhotoAlbumActivity.aList.getAlbumList().size(); i++){
+                            for(int j = 0; j < PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().size(); j++){
+                                ArrayList<String> l = PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().get(j).getLocationTags();
+                                if(l == null){
+                                    break;
+                                }
+                                if(l.isEmpty()){
+                                    break;
+                                }
+                                if(l.contains(tagValue)){
+                                    aList.searchResults.addPhoto(aList.getAlbumList().get(i).getPhotos().get(j));
+                                }else{
+                                    for(int k = 0; k < l.size(); k++){
+                                        if(l.get(k).startsWith(tagValue)){
+                                            aList.searchResults.addPhoto(aList.getAlbumList().get(i).getPhotos().get(j));
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }else{
+                        for(int i = 0; i < PhotoAlbumActivity.aList.getAlbumList().size(); i++){
+                            for(int j = 0; j < PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().size(); j++){
+                                ArrayList<String> p = PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().get(j).getPersonTags();
+                                if(p == null){
+                                    break;
+                                }
+                                if(p.isEmpty()){
+                                    break;
+                                }
+                                if(p.contains(tagValue)){
+                                    aList.searchResults.addPhoto(aList.getAlbumList().get(i).getPhotos().get(j));
+                                }else{
+                                    for(int k = 0; k < p.size(); k++){
+                                        if(p.get(k).startsWith(tagValue)){
+                                            aList.searchResults.addPhoto(aList.getAlbumList().get(i).getPhotos().get(j));
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                if(aList.searchResults.getNumPhotos().equals("0")){
+                    AlertDialog.Builder ab = new AlertDialog.Builder(mainContext);
+                    ab.setTitle("Search failed");
+                    ab.setMessage("No pictures found");
+                    ab.setPositiveButton("OK", ((DialogInterface d, int which)->{
+                        dialog.dismiss();
+                    }));
+                    ab.show();
+                }else{
+                    Intent intent = new Intent(PhotoAlbumActivity.this, SearchActivity.class);
+                    intent.putExtra("index", 0);
+                    startActivity(intent);
+                }
+
+
+            });
+
+            cancelBtn.setOnClickListener((View view)->{
+                dialog.dismiss();
+            });
+
+            dialog.show();
         });
 
         albumsLV.setOnItemLongClickListener((AdapterView<?> av, View view, int pos, long id) -> {

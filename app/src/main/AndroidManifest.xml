@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name=".SearchActivity"
+            android:parentActivityName=".PhotoAlbumActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.cs213_android.PhotoAlbumActivity" />
+        </activity>
 
         <activity
             android:name=".PhotoDisplayActivity"

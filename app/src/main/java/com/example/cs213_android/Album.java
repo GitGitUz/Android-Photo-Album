@@ -6,11 +6,10 @@ import java.io.Serializable;
 public class Album implements Serializable{
     private static final long serialVersionUID = 2L;
     private String name;
-    private ArrayList<Photo> photos;
+    private ArrayList<Photo> photos = new ArrayList<Photo>();
 
     public Album(String name) {
         this.name = name;
-        photos = new ArrayList<>();
     }
 
     public void setName(String name) {
@@ -39,6 +38,10 @@ public class Album implements Serializable{
 
     public void addPhoto(Photo p) {
         photos.add(p);
+    }
+
+    public void clearSearchResults(){
+        photos.clear();
     }
 
 //    public void deletePhoto(Photo p) {
