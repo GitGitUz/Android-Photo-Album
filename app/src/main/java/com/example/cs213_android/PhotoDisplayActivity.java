@@ -69,11 +69,16 @@ public class PhotoDisplayActivity extends AppCompatActivity {
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar_pd);
+        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
+
+        toolbar.setNavigationOnClickListener((View v)->{
+            Intent intent = new Intent(PhotoDisplayActivity.this, AlbumInfoActivity.class);
+            intent.putExtra("index", albumI);
+            startActivity(intent);
+        });
+
         TextView textView = toolbar.findViewById(R.id.toolbar_pdTitle);
         textView.setText(currPhoto.getCaption());
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ImageView imageView = findViewById(R.id.full_image);
         imageView.setImageBitmap(currPhoto.getImage());
@@ -81,9 +86,6 @@ public class PhotoDisplayActivity extends AppCompatActivity {
         tagsLV = findViewById(R.id.tags_list);
         tagsLV.setSelection(0);
         tagsAdapter = new ArrayAdapter<Tag>(photoContext, R.layout.tag, currPhoto.getTags());
-        if(currPhoto.getTags().isEmpty()){
-            Log.i("Photo: " + currPhoto.getCaption(),"tags are empty");
-        }
         tagsLV.setAdapter(tagsAdapter);
 
         add.setOnClickListener((View v)->{

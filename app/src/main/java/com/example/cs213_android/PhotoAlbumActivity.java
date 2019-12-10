@@ -29,6 +29,8 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class PhotoAlbumActivity extends AppCompatActivity {
 
@@ -42,42 +44,6 @@ public class PhotoAlbumActivity extends AppCompatActivity {
         aList = new AlbumsList();
         aList.albums = AlbumsList.readData(this);
 
-
-        if (aList == null) {
-            Log.i("Albums List Object is", "null");
-            aList = new AlbumsList();
-            aList.albums.add(new Album("Album1"));
-            aList.albums.add(new Album("Album2"));
-            AlbumsList.writeData(this, aList.getAlbumList());
-            Log.i("AAlbum1 Name ", aList.albums.get(0).getName());
-            Log.i("AAlbum2 Name ", aList.albums.get(1).getName());
-        } else {
-            Log.i("Albums list Object is", "not null");
-        }
-
-        if (aList.albums == null) {
-            Log.i("Albums list is", "null");
-            aList.albums = new ArrayList<Album>();
-            aList.albums.add(new Album("Album1"));
-            aList.albums.add(new Album("Album2"));
-            AlbumsList.writeData(this, aList.getAlbumList());
-            Log.i("AAlbum1 Name ", aList.albums.get(0).getName());
-            Log.i("AAlbum2 Name ", aList.albums.get(1).getName());
-        } else {
-            Log.i("Albums list is", "not null");
-        }
-
-        if (aList.albums.isEmpty()) {
-            Log.i("Albums list is", "empty");
-            aList.albums.add(new Album("Album1"));
-            aList.albums.add(new Album("Album2"));
-            AlbumsList.writeData(this, aList.getAlbumList());
-            Log.i("EAlbum1 Name ", aList.albums.get(0).getName());
-            Log.i("EAlbum2 Name ", aList.albums.get(1).getName());
-        } else {
-            Log.i("Albums list is", "not empty");
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.albums_display);
 
@@ -87,7 +53,6 @@ public class PhotoAlbumActivity extends AppCompatActivity {
 
         ArrayAdapter<Album> albumAdapter = new ArrayAdapter<Album>(this, R.layout.album, aList.albums);
         albumsLV.setAdapter(albumAdapter);
-
 
         FloatingActionButton add = findViewById(R.id.addAlbum);
         FloatingActionButton search = findViewById(R.id.searchPhotos);
@@ -169,8 +134,11 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                         continue;
                     }
                     lTags.addAll(PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().get(j).getLocationTags());
+
                 }
             }
+
+            ArrayList<String> l2Tags = removeDuplicateTags(lTags);
 
             for(int i = 0; i < PhotoAlbumActivity.aList.getAlbumList().size(); i++){
                 for(int j = 0; j < PhotoAlbumActivity.aList.getAlbumList().get(i).getPhotos().size(); j++){
@@ -181,14 +149,16 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                 }
             }
 
+            ArrayList<String> p2Tags = removeDuplicateTags(pTags);
+
             searchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     if(searchSpinner.getSelectedItem().toString().trim().equals("location")){
-                        ArrayAdapter<String> autoAdapter = new ArrayAdapter<String>(mainContext, android.R.layout.simple_dropdown_item_1line, lTags);
+                        ArrayAdapter<String> autoAdapter = new ArrayAdapter<String>(mainContext, android.R.layout.simple_dropdown_item_1line, l2Tags);
                         autoText.setAdapter(autoAdapter);
                     }else{
-                        ArrayAdapter<String> autoAdapter = new ArrayAdapter<String>(mainContext, android.R.layout.simple_dropdown_item_1line, pTags);
+                        ArrayAdapter<String> autoAdapter = new ArrayAdapter<String>(mainContext, android.R.layout.simple_dropdown_item_1line, p2Tags);
                         autoText.setAdapter(autoAdapter);
                     }
                 }
@@ -402,6 +372,14 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                     startActivity(intent);
         });
 
+    }
+
+    public ArrayList<String> removeDuplicateTags(ArrayList<String> tags){
+        Set<String> set = new LinkedHashSet<String>();
+        set.addAll(tags);
+        tags.clear();
+        tags.addAll(set);
+        return tags;
     }
 }
 

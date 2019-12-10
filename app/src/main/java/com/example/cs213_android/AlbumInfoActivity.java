@@ -43,7 +43,6 @@ public class AlbumInfoActivity extends AppCompatActivity {
 
         int index = getIntent().getIntExtra("index", 0);
         album = PhotoAlbumActivity.aList.albums.get(index);
-        Log.i("I:Album Photo Count(Startup)", album.getNumPhotos());
         final int albumIndex = index;
 
         Toolbar toolbar = findViewById(R.id.toolbar_ai);
@@ -149,12 +148,13 @@ public class AlbumInfoActivity extends AppCompatActivity {
         photosGV.setOnItemClickListener((AdapterView<?> av, View view, int pos, long id) -> {
             Intent intent = new Intent(AlbumInfoActivity.this, PhotoDisplayActivity.class);
             intent.putExtra("album_index", albumIndex);
+            Log.i("Album Index(AI->PD)",""+albumIndex);
             intent.putExtra("photo_index", pos);
             startActivity(intent);
 
         });
 
-            add.setOnClickListener((View v)-> {
+        add.setOnClickListener((View v)-> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("image/*");
             startActivityForResult(intent, CHOOSE_PHOTO);
@@ -165,7 +165,6 @@ public class AlbumInfoActivity extends AppCompatActivity {
     public CharSequence[] getAlbumNames(){
         CharSequence[] aNames = new CharSequence[PhotoAlbumActivity.aList.getAlbumList().size()];
         for(int i = 0; i < PhotoAlbumActivity.aList.getAlbumList().size(); i++){
-            Log.i("Album",PhotoAlbumActivity.aList.getAlbumList().get(0).getName());
             aNames[i] = PhotoAlbumActivity.aList.getAlbumList().get(i).getName();
         }
         return aNames;
@@ -191,8 +190,6 @@ public class AlbumInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent selectedImageIntent){
-        Log.i("onActivityResult", "called");
-
         super.onActivityResult(requestCode, resultCode, selectedImageIntent);
 
         if(resultCode == RESULT_OK){
@@ -211,7 +208,6 @@ public class AlbumInfoActivity extends AppCompatActivity {
 
                 Photo newPhoto = new Photo(picBitmap, album, caption);
                 album.addPhoto(newPhoto);
-                Log.i("Album Photo Count(Post-Selection)", album.getNumPhotos());
 
                 AlbumsList.writeData(this, PhotoAlbumActivity.aList.getAlbumList());
 

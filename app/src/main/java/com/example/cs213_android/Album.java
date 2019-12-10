@@ -44,10 +44,6 @@ public class Album implements Serializable{
         photos.clear();
     }
 
-//    public void deletePhoto(Photo p) {
-//        photos.remove(p);
-//    }
-
     public String toString(){
         return this.getName();
     }

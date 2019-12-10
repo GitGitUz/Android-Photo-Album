@@ -38,15 +38,6 @@ public class AlbumsList implements Serializable {
         return false;
     }
 
-//    public Album getAlbumByName(String name){
-//        for(Album a : albums){
-//            if(a.getName().equalsIgnoreCase(name)){
-//                return a;
-//            }
-//        }
-//        return null;
-//    }
-
     public static ArrayList<Album> readData(Context context){
         ArrayList<Album> albms = new ArrayList<Album>();
         try {
