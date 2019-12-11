@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -148,7 +147,6 @@ public class AlbumInfoActivity extends AppCompatActivity {
         photosGV.setOnItemClickListener((AdapterView<?> av, View view, int pos, long id) -> {
             Intent intent = new Intent(AlbumInfoActivity.this, PhotoDisplayActivity.class);
             intent.putExtra("album_index", albumIndex);
-            Log.i("Album Index(AI->PD)",""+albumIndex);
             intent.putExtra("photo_index", pos);
             startActivity(intent);
 
@@ -184,6 +182,9 @@ public class AlbumInfoActivity extends AppCompatActivity {
             }catch(Exception e){
                 e.printStackTrace();
             }
+        }
+        if(c != null){
+            c.close();
         }
         return caption;
     }

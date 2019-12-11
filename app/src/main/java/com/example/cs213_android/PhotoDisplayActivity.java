@@ -8,8 +8,6 @@ import android.os.Bundle;
 
 import android.text.InputType;
 
-import android.util.Log;
-
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -121,7 +119,6 @@ public class PhotoDisplayActivity extends AppCompatActivity {
                         edit.hide();
                         cancel.hide();
                         add.show();
-                        return;
                     }));
                     dupe.show();
                 }else if(newValue.trim().isEmpty()){
@@ -134,7 +131,6 @@ public class PhotoDisplayActivity extends AppCompatActivity {
                         edit.hide();
                         cancel.hide();
                         add.show();
-                        return;
                     }));
                     dupe.show();
                 }else{
@@ -198,7 +194,6 @@ public class PhotoDisplayActivity extends AppCompatActivity {
                             edit.hide();
                             cancel.hide();
                             add.show();
-                            return;
                         }));
                         dupe.show();
                     }else if(newValue.trim().isEmpty()){
@@ -211,7 +206,6 @@ public class PhotoDisplayActivity extends AppCompatActivity {
                             edit.hide();
                             cancel.hide();
                             add.show();
-                            return;
                         }));
                         dupe.show();
                     }else{

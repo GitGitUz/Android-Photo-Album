@@ -13,8 +13,6 @@ import android.content.Intent;
 
 import android.text.InputType;
 
-import android.util.Log;
-
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -81,7 +79,6 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                         cancel.hide();
                         add.show();
                         search.show();
-                        return;
                     }));
                     dupe.show();
                 }else if(newName.trim().isEmpty()){
@@ -95,7 +92,6 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                         cancel.hide();
                         add.show();
                         search.show();
-                        return;
                     }));
                     dupe.show();
                 }else{
@@ -288,7 +284,6 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                            cancel.hide();
                            add.show();
                            search.show();
-                           return;
                        }));
                        dupe.show();
                    }else if(newName.trim().isEmpty()){
@@ -302,7 +297,6 @@ public class PhotoAlbumActivity extends AppCompatActivity {
                            cancel.hide();
                            add.show();
                            search.show();
-                           return;
                        }));
                        dupe.show();
                    }else{
