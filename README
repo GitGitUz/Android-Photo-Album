@@ -1,0 +1,3 @@
+Welcome to our CS213 Android Photos. This application has been tested for the Nexus 4 (4.7 inch, 768x1280, xhdpi) 
+device emulator that comes with Android Studio as well as Android API Level 28 (Android 9.0 - Pie).
+The application handles .JPEG/.JPG and .PNG files. 
